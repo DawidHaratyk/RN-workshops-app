@@ -1,13 +1,13 @@
-import { Text } from "react-native";
-import React, { ReactNode } from "react";
+import { Text } from 'react-native'
+import React, { ReactNode } from 'react'
 
-import { theme } from "../../../theme/theme";
-import { styles } from "./styles";
+import { theme } from '../../../theme/theme'
+import { styles } from './styles'
 
 interface BodyProps {
-  children: ReactNode;
-  variant: "large" | "small";
-  color?: string;
+  children: ReactNode
+  variant: 'large' | 'small'
+  color?: string
 }
 
 export default function Body({
@@ -17,5 +17,5 @@ export default function Body({
 }: BodyProps) {
   return (
     <Text style={[styles.text, styles[variant], { color }]}>{children}</Text>
-  );
+  )
 }
