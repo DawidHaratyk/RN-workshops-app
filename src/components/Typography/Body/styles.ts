@@ -12,4 +12,13 @@ export const styles = StyleSheet.create({
   small: {
     fontSize: theme.fontSizes.bodySmall,
   },
+  primary: {
+    color: "#0d1b2a",
+  },
+  primary200: {
+    color: "#1b263b",
+  },
+  secondary: {
+    color: "#3c096c",
+  },
 });

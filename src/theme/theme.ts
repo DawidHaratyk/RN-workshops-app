@@ -1,9 +1,8 @@
 export const theme = {
   colors: {
-    primary: "#BF785E",
-    primary200: "#A65B4B",
-    secondary: "#6393A6",
-    black: "#1D2341",
+    primary: "#0d1b2a",
+    primary200: "#1b263b",
+    secondary: "#3c096c",
   },
   fontSizes: {
     bodySmall: 14,
