@@ -10,7 +10,10 @@ const Stack = createNativeStackNavigator();
 
 export const HomeScreen = () => {
   return (
-    <Stack.Navigator initialRouteName="Dashboard">
+    <Stack.Navigator
+      initialRouteName="Dashboard"
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Dashboard" component={DashboardScreen} />
       <Stack.Screen name="PostDetails" component={PostDetailsScreen} />
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />

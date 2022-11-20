@@ -1,20 +1,22 @@
 import { StyleSheet } from "react-native";
+import { windowWidth } from "../../../constants";
 
 import { theme } from "../../../theme/theme";
 
 export const styles = StyleSheet.create({
-  text: {
-    fontSize: theme.fontSizes.body,
+  mainButton: {
+    paddingVertical: 10,
+    width: windowWidth * 0.8,
+    marginBottom: 14,
   },
-  large: {
-    fontSize: theme.fontSizes.bodyLarge,
+  green: {
+    backgroundColor: theme.backgroundColors.green,
   },
-  small: {
-    fontSize: theme.fontSizes.bodySmall,
+  red: {
+    backgroundColor: theme.backgroundColors.red,
   },
   primary: {
     color: "#0d1b2a",
-    // change color to a variable (better approach)
   },
   primary200: {
     color: "#1b263b",

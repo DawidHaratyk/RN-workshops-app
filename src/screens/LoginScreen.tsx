@@ -1,21 +1,13 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
-import { Header } from "../components/Typography/Header/Header";
-import { useAuth } from "../contexts/AuthContext";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LoginView } from "../components/LoginView/LoginView";
 
 export const LoginScreen = () => {
-  const { isLogged, login } = useAuth();
-
   return (
-    <View>
-      <View>
-        <Header variant="h4">Login</Header>
-        <Button title="Go to MainApp" onPress={login} />
-      </View>
-      <View>
-        <Text>FORM</Text>
-      </View>
-    </View>
+    <SafeAreaView>
+      <LoginView />
+    </SafeAreaView>
   );
 };
 

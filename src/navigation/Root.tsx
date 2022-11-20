@@ -17,7 +17,8 @@ export const Root = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerTransparent: true,
+        headerTitle: "",
       }}
     >
       {isLogged ? (
@@ -28,8 +29,16 @@ export const Root = () => {
         </>
       ) : (
         <>
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen
+            name="Welcome"
+            component={WelcomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="Register" component={RegisterScreen} />
         </>
       )}

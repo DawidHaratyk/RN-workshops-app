@@ -3,6 +3,7 @@ export const theme = {
     primary: "#0d1b2a",
     primary200: "#1b263b",
     secondary: "#3c096c",
+    white: "white",
   },
   fontSizes: {
     bodySmall: 14,
@@ -19,5 +20,9 @@ export const theme = {
     base: 16,
     md: 24,
     lg: 32,
+  },
+  backgroundColors: {
+    green: "#39a845",
+    red: "#ef233c",
   },
 };

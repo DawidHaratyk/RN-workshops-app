@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { RegisterView } from "../components/RegisterView/RegisterView";
 
 export const RegisterScreen = () => {
   return (
-    <View>
-      <Text>RegisterScreen</Text>
-    </View>
-  )
-}
+    <SafeAreaView>
+      <RegisterView />
+    </SafeAreaView>
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

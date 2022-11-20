@@ -1,20 +1,15 @@
 import { Text } from "react-native";
-import React, { ReactNode } from "react";
-
+import React from "react";
 import { theme } from "../../../theme/theme";
 import { styles } from "./styles";
 
 interface BodyProps {
-  children: ReactNode;
+  title: string;
   variant: "large" | "small";
   color?: keyof typeof theme.colors;
 }
 
-export default function Body({
-  children,
-  variant,
-  color = "primary",
-}: BodyProps) {
+export const Body = ({ title, variant, color = "primary" }: BodyProps) => {
   return (
     <Text
       style={[
@@ -23,7 +18,7 @@ export default function Body({
         { color: theme.colors[color], fontFamily: "sans-serif" },
       ]}
     >
-      {children}
+      {title}
     </Text>
   );
-}
+};

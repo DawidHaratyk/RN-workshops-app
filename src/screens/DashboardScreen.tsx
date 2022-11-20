@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
+import { DashboardView } from "../components/DashboardView/DashboardView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const DashboardScreen = () => {
   return (
-    <View>
-      <Text>DashboardScreen</Text>
-    </View>
+    <SafeAreaView>
+      <DashboardView />
+    </SafeAreaView>
   );
 };
 
