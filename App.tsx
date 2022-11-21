@@ -1,9 +1,7 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { Root } from "./src/navigation/Root";
-import { AuthProvider } from "./src/contexts/AuthContext";
-import "react-native-url-polyfill/auto";
+import { StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { Root } from './src/navigation/Root'
+import { AuthProvider } from './src/contexts/AuthContext'
 
 export default function App() {
   return (
@@ -12,14 +10,14 @@ export default function App() {
         <Root />
       </AuthProvider>
     </NavigationContainer>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-});
+})

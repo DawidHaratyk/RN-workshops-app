@@ -1,35 +1,30 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import React, { Dispatch, SetStateAction } from "react";
-import { theme } from "../../theme/theme";
+import { Pressable, StyleSheet, View } from 'react-native'
+import React, { Dispatch, SetStateAction } from 'react'
+import { theme } from '../../theme/theme'
 
 interface TogglerProps {
-  postDisplayType: "show-entire-content" | "show-image-only";
-  setPostDisplayType: Dispatch<
-    SetStateAction<"show-entire-content" | "show-image-only">
-  >;
+  postDisplayType: 'show-entire-content' | 'show-image-only'
+  setIsEntirePostShown: Dispatch<SetStateAction<boolean>>
 }
 
 export const PostsDisplayedTypeToggler = ({
   postDisplayType,
-  setPostDisplayType,
+  setIsEntirePostShown,
 }: TogglerProps) => {
-  const togglePostsDisplayType = () => {
-    if (postDisplayType === "show-entire-content")
-      setPostDisplayType("show-image-only");
-    else setPostDisplayType("show-entire-content");
-  };
+  const togglePostsDisplayType = () =>
+    setIsEntirePostShown((prevValue) => !prevValue)
 
   return (
     <Pressable style={styles.togglerContainer} onPress={togglePostsDisplayType}>
       <View
         style={[
           styles.toggler,
-          postDisplayType === "show-entire-content" && styles.togglerMove,
+          postDisplayType === 'show-entire-content' && styles.togglerMove,
         ]}
       ></View>
     </Pressable>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   togglerContainer: {
@@ -39,10 +34,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   toggler: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
-    height: "100%",
+    height: '100%',
     width: 36,
     borderRadius: 20,
     borderColor: theme.colors.secondary,
@@ -52,7 +47,7 @@ const styles = StyleSheet.create({
   },
   togglerMove: {
     top: 0,
-    left: "100%",
+    left: '100%',
     transform: [{ translateX: -36 }],
   },
-});
+})

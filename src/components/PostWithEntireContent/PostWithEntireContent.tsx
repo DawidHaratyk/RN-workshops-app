@@ -1,9 +1,9 @@
-import { Image, Pressable, StyleSheet, View } from "react-native";
-import React from "react";
-import { PostPropsWithOptionalId } from "../../types";
-import { Body } from "../Typography/Body/Body";
-import { useNavigation } from "@react-navigation/native";
-import { PostInformations } from "../PostInformations/PostInformations";
+import { Image, Pressable, StyleSheet, View } from 'react-native'
+import React from 'react'
+import { PostPropsWithOptionalId } from '../../types'
+import { useNavigation } from '@react-navigation/native'
+import { PostInformations } from '../PostInformations/PostInformations'
+import { Body } from '../Typography/Body/Body'
 
 export const PostWithEntireContent = ({
   name,
@@ -12,9 +12,9 @@ export const PostWithEntireContent = ({
   commentAuthor,
   comment,
 }: PostPropsWithOptionalId) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
-  const goToPostDetailsScreen = () => navigation.navigate("PostDetails");
+  const goToPostDetailsScreen = () => navigation.navigate('PostDetails')
 
   return (
     <Pressable
@@ -31,24 +31,24 @@ export const PostWithEntireContent = ({
         comment={comment}
       />
     </Pressable>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   postWithEntireContent: {
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: 'black',
     borderRadius: 3,
     marginBottom: 20,
     paddingHorizontal: 15,
     paddingVertical: 6,
   },
   imageContainer: {
-    overflow: "hidden",
+    overflow: 'hidden',
     marginVertical: 8,
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 200,
   },
-});
+})
