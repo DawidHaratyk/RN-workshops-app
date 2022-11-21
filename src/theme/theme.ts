@@ -4,6 +4,7 @@ export const theme = {
     primary200: "#1b263b",
     secondary: "#3c096c",
     white: "white",
+    red: "#d62828",
   },
   fontSizes: {
     bodySmall: 14,

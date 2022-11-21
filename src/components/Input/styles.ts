@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 12,
     paddingVertical: 5,
-    marginBottom: 14,
   },
   submitIcon: {
     position: "absolute",
