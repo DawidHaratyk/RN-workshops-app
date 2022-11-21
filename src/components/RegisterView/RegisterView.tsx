@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { theme } from "../../theme/theme";
 import { createClient } from "@supabase/supabase-js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import "react-native-url-polyfill/auto";
 
 export const supabase = createClient(
   "https://jvneoinifrjqltrrxesb.supabase.co",

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Root } from "./src/navigation/Root";
 import { AuthProvider } from "./src/contexts/AuthContext";
+import "react-native-url-polyfill/auto";
 
 export default function App() {
   return (
