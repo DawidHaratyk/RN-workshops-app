@@ -17,9 +17,9 @@ export const PostsList = ({ data, postDisplayType }: PostsListProps) => {
     else if (postDisplayType === "show-image-only")
       return (
         <View style={styles.postsImagesContainer}>
-          {data.map((postObj) => (
+          {/* {data.map((postObj) => (
             <PostImage {...postObj} />
-          ))}
+          ))} */}
         </View>
       );
   };

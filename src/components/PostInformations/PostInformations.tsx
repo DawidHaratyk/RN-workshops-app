@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Body } from '../Typography/Body/Body'
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import { Body } from "../Typography/Body/Body";
 
 interface PostInformationsProps {
-  amountOfLikes: number
-  commentAuthor: string
-  comment: string
+  amountOfLikes: number | null | undefined;
+  commentAuthor?: string | undefined;
+  comment?: string;
 }
 
 export const PostInformations = ({
@@ -16,13 +16,15 @@ export const PostInformations = ({
   return (
     <View style={styles.postInformations}>
       <Body title={`${amountOfLikes} likes`} variant="large" />
-      <Body title={`${commentAuthor}: ${comment}`} variant="large" />
+      {commentAuthor && (
+        <Body title={`${commentAuthor}: ${comment}`} variant="large" />
+      )}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   postInformations: {
     marginVertical: 10,
   },
-})
+});
