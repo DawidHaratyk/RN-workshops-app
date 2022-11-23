@@ -1,14 +1,14 @@
-import { TextInput, View } from "react-native";
-import React from "react";
-import { styles } from "../Input/styles";
-import { AntDesign } from "@expo/vector-icons";
-import { windowWidth } from "../../constants";
+import { KeyboardAvoidingView, TextInput, View } from 'react-native'
+import React from 'react'
+import { styles } from '../Input/styles'
+import { AntDesign } from '@expo/vector-icons'
+import { windowWidth } from '../../constants'
 
 interface InputWithSubmitOptionProps {
-  value: string;
-  onChangeText: () => void;
-  placeholder: string;
-  onPress?: () => void;
+  value: string
+  onChangeText: () => void
+  placeholder: string
+  onPress?: () => void
 }
 
 export const InputWithSubmitOption = ({
@@ -30,7 +30,8 @@ export const InputWithSubmitOption = ({
         size={24}
         color="black"
         style={styles.submitIcon}
+        onPress={() => console.log('xd')}
       />
     </View>
-  );
-};
+  )
+}
