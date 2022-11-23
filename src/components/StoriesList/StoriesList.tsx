@@ -1,56 +1,58 @@
-import { StyleSheet, ScrollView, View } from "react-native";
-import React from "react";
+import { StyleSheet, ScrollView, View } from 'react-native'
+import React from 'react'
 
-import { ImageSourcePropType } from "react-native";
-import { UserImageCircle } from "../UserImageCircle/UserImageCircle";
+import { ImageSourcePropType } from 'react-native'
+import { UserImageCircle } from '../UserImageCircle/UserImageCircle'
 
 export interface StoryItem {
-  image: ImageSourcePropType;
+  image: ImageSourcePropType
 }
 
 const storiesData: StoryItem[] = [
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
   {
-    image: require("../../images/graphic1.jpg"),
+    image: require('../../images/graphic1.jpg'),
   },
-];
+]
 
 export const StoriesList = () => {
   const storiesList = storiesData.map(({ image }, key) => (
     <View style={styles.storyItemContainer}>
       <UserImageCircle image={image} size="medium" key={key} />
     </View>
-  ));
+  ))
 
   return (
-    <ScrollView horizontal style={styles.storiesContainer}>
-      {storiesList}
-    </ScrollView>
-  );
-};
+    <View>
+      <ScrollView horizontal style={styles.storiesContainer}>
+        {storiesList}
+      </ScrollView>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   storiesContainer: {
@@ -61,4 +63,4 @@ const styles = StyleSheet.create({
   storyItemContainer: {
     marginRight: 9,
   },
-});
+})
