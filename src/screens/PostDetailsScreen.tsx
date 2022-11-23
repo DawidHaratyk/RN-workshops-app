@@ -1,94 +1,96 @@
-import { Image, StyleSheet, View } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { UserImageCircle } from '../components/UserImageCircle/UserImageCircle'
-import { Body } from '../components/Typography/Body/Body'
-import { PostInformations } from '../components/PostInformations/PostInformations'
-import { PostCommentsList } from '../components/PostCommentsList/PostCommentsList'
-import { InputWithSubmitOption } from '../components/InputWithSubmitOption/InputWithSubmitOption'
-import { windowHeight } from '../constants'
-import { supabase } from '../../supabase'
-import { useQuery } from '@tanstack/react-query'
-import { PostgrestSingleResponse } from '@supabase/supabase-js'
-import { Header } from '../components/Typography/Header/Header'
+import { Image, StyleSheet, View } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { UserImageCircle } from "../components/UserImageCircle/UserImageCircle";
+import { Body } from "../components/Typography/Body/Body";
+import { PostInformations } from "../components/PostInformations/PostInformations";
+import { PostCommentsList } from "../components/PostCommentsList/PostCommentsList";
+import { InputWithSubmitOption } from "../components/InputWithSubmitOption/InputWithSubmitOption";
+import { windowHeight } from "../constants";
+import { supabase } from "../../supabase";
+import { useQuery } from "@tanstack/react-query";
+import { PostgrestSingleResponse } from "@supabase/supabase-js";
+import { Header } from "../components/Typography/Header/Header";
 
 export interface Comment {
-  body: string
-  creator_uuid: string
-  id: number
+  body: string;
+  creator_uuid: string;
+  id: number;
 }
 
 export interface PostDetails {
-  id: number
-  created_at: Date
-  description: string
-  image_url: string
-  comments: Comment[]
+  id: number;
+  created_at: Date;
+  description: string;
+  image_url: string;
+  comments: Comment[];
 }
 
 export interface PostData {
-  error?: any
-  data: PostDetails
-  count?: any
-  status: number
-  statusText: string
+  error?: any;
+  data: PostDetails;
+  count?: any;
+  status: number;
+  statusText: string;
 }
 
 const getPostDetails = async (postId: number) => {
-  // what type for the response? why PostData is not working
-
   const response = await supabase
-    .from('posts')
+    .from("posts")
     .select(
-      'id, created_at, description, image_url, comments ( body, creator_uuid, id )'
+      "id, created_at, description, image_url, comments ( body, creator_uuid, id )"
     )
-    .eq('id', postId)
-    .is('archived_at', null)
-    .single()
+    .eq("id", postId)
+    .is("archived_at", null)
+    .single();
 
-  return response
-}
+  return response;
+};
 
 export const PostDetailsScreen = ({ route }: any) => {
-  const postId: number = route.params.postId
+  const postId: number = route.params.postId;
 
-  const { data, isLoading } = useQuery(['post', postId], () =>
+  const { data, isLoading } = useQuery(["post", postId], () =>
     getPostDetails(postId)
-  )
+  );
 
-  console.log(data)
+  console.log(data);
 
-  if (isLoading) return <Header title="Loding..." variant="h4" />
+  if (isLoading) return <Header title="Loding..." variant="h4" />;
 
-  const imgUrl: string = data?.data?.image_url
+  const imgUrl = data?.data?.image_url;
 
-  // console.log('dane: ', data?.likes)
+  console.log(data?.data?.comments);
 
   return (
     <SafeAreaView style={styles.postDetailsContainer}>
       <Image
         source={{
-          uri: imgUrl,
+          uri: imgUrl
+            ? imgUrl
+            : "https://i.pinimg.com/280x280_RS/9e/36/c8/9e36c8ae6b12cd6cec3b1de2591da9e4.jpg",
         }}
         style={styles.postDetailsImage}
       />
       <View style={styles.postDetailsContent}>
         <View style={styles.postDetailsImageContainer}>
           <UserImageCircle
-            image={require('../images/graphic1.jpg')}
+            image="https://i.pinimg.com/280x280_RS/9e/36/c8/9e36c8ae6b12cd6cec3b1de2591da9e4.jpg"
             size="medium"
           />
           <Body title="somebody" variant="small" />
         </View>
         <View>
           <PostInformations
-            amountOfLikes={20}
+            amountOfLikes={data?.count}
             commentAuthor="Janek"
-            comment="hehe uwaga komentarz XDDDDDDDDDD"
+            comment={data?.data?.description}
           />
         </View>
       </View>
-      <PostCommentsList />
+      {data?.data?.comments && (
+        <PostCommentsList commentsList={data.data.comments} />
+      )}
       <View style={styles.postInputContainer}>
         <InputWithSubmitOption
           value=""
@@ -97,8 +99,8 @@ export const PostDetailsScreen = ({ route }: any) => {
         />
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   postDetailsContainer: {
@@ -107,19 +109,19 @@ const styles = StyleSheet.create({
     height: windowHeight,
   },
   postDetailsImage: {
-    width: '100%',
-    height: '35%',
+    width: "100%",
+    height: "35%",
   },
   postDetailsContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 10,
   },
   postDetailsImageContainer: {
     marginRight: 10,
   },
   postInputContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 15,
   },
-})
+});

@@ -1,49 +1,42 @@
-import { StyleSheet, ScrollView, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, ScrollView, View, Pressable } from "react-native";
+import React from "react";
 
-import { ImageSourcePropType } from 'react-native'
-import { UserImageCircle } from '../UserImageCircle/UserImageCircle'
+import { ImageSourcePropType } from "react-native";
+import { UserImageCircle } from "../UserImageCircle/UserImageCircle";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "../../../supabase";
+import { useNavigation } from "@react-navigation/native";
 
 export interface StoryItem {
-  image: ImageSourcePropType
+  image: ImageSourcePropType;
 }
 
-const storiesData: StoryItem[] = [
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-  {
-    image: require('../../images/graphic1.jpg'),
-  },
-]
+const getUsers = async () => {
+  const usersResponse = await supabase.from("users").select("*");
+
+  return usersResponse.data;
+};
 
 export const StoriesList = () => {
-  const storiesList = storiesData.map(({ image }, key) => (
-    <View style={styles.storyItemContainer}>
-      <UserImageCircle image={image} size="medium" key={key} />
+  const { navigate } = useNavigation();
+
+  const { data, isLoading } = useQuery(["users"], getUsers);
+
+  const goToUserProfile = () => {
+    console.log("idziee");
+
+    navigate("UserProfile");
+  };
+
+  const storiesList = data?.map(({ image_url, uuid }) => (
+    <View style={styles.storyItemContainer} key={uuid}>
+      <UserImageCircle
+        image={image_url}
+        size="medium"
+        onPress={goToUserProfile}
+      />
     </View>
-  ))
+  ));
 
   return (
     <View>
@@ -51,8 +44,8 @@ export const StoriesList = () => {
         {storiesList}
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   storiesContainer: {
@@ -63,4 +56,4 @@ const styles = StyleSheet.create({
   storyItemContainer: {
     marginRight: 9,
   },
-})
+});

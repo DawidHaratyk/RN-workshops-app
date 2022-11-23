@@ -12,32 +12,56 @@ import {
 import React from "react";
 import { UserImageCircle } from "../UserImageCircle/UserImageCircle";
 import { useNavigation } from "@react-navigation/native";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "../../../supabase";
+import { Database } from "../../types/database.types";
 
 interface CommentProps {
-  image: ImageSourcePropType;
-  commentAuthor: string;
-  comment: string;
+  body: string | null;
+  creator_uuid: string | null;
 }
 
-export const Comment = ({ image, commentAuthor, comment }: CommentProps) => {
+const getUser = async (creator_uuid: string | null) => {
+  const userResponse = await supabase
+    .from("users")
+    .select()
+    .eq("uuid", creator_uuid)
+    .single();
+
+  return userResponse;
+};
+
+export const Comment = ({ body, creator_uuid }: CommentProps) => {
   const navigation = useNavigation();
 
-  const goToUserProfileScreen = () => navigation.navigate("UserProfile");
+  const { data, isLoading } = useQuery(["user", creator_uuid], () =>
+    getUser(creator_uuid)
+  );
+
+  const goToUserProfileScreen = () =>
+    navigation.navigate("UserProfile", {
+      userId: creator_uuid,
+    });
 
   return (
     <View style={styles.commentContainer}>
       <UserImageCircle
-        image={image}
+        image={
+          "https://i.pinimg.com/280x280_RS/9e/36/c8/9e36c8ae6b12cd6cec3b1de2591da9e4.jpg"
+        }
         size="small"
         additionalStyles={{ marginRight: 7 }}
       />
       <Text style={styles.authorAndCommentContainer}>
         <TouchableWithoutFeedback onPress={goToUserProfileScreen}>
-          <Text>{commentAuthor}</Text>
+          <Text>
+            {typeof data?.data?.first_name === "string"
+              ? data?.data?.first_name
+              : "Imię"}
+          </Text>
         </TouchableWithoutFeedback>
-        <Text>: {comment}</Text>
+        <Text>: {body}</Text>
       </Text>
-      {/* improve fontSize on these Texts */}
     </View>
   );
 };

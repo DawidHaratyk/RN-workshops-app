@@ -4,8 +4,8 @@ import { Body } from "../Typography/Body/Body";
 
 interface PostInformationsProps {
   amountOfLikes: number | null | undefined;
-  commentAuthor?: string | undefined;
-  comment?: string;
+  commentAuthor?: string | null;
+  comment?: string | null;
 }
 
 export const PostInformations = ({
@@ -16,7 +16,7 @@ export const PostInformations = ({
   return (
     <View style={styles.postInformations}>
       <Body title={`${amountOfLikes} likes`} variant="large" />
-      {commentAuthor && (
+      {comment && (
         <Body title={`${commentAuthor}: ${comment}`} variant="large" />
       )}
     </View>
