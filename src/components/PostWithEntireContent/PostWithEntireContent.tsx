@@ -15,14 +15,14 @@ export const PostWithEntireContent = ({
   id,
   image_url,
 }: PostProps) => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   const { data, refetch } = useQuery(["post", id], () =>
     getPostData(id, creator_uuid)
   );
 
   const goToPostDetailsScreen = () =>
-    navigation.navigate("PostDetails", {
+    navigate("PostDetails", {
       postId: id,
     });
 

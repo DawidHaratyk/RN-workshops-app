@@ -18,11 +18,13 @@ import { InputWithSubmitOption } from "../components/InputWithSubmitOption/Input
 import { windowHeight } from "../constants";
 import { usePostDetailsValues } from "../hooks/usePostDetailsValues";
 
-export const PostDetailsScreen = ({ route }: any) => {
+export const PostDetailsScreen = ({ navigation, route }: any) => {
   const postId: number = route.params.postId;
 
   const { imgUrl, name, amountOfLikes, comment, commentsList } =
     usePostDetailsValues(postId);
+
+  // why navigation.goBack() is not going back to userProfile when that was our last route
 
   // if (isLoading)
   //   return (
@@ -63,6 +65,7 @@ export const PostDetailsScreen = ({ route }: any) => {
             </View>
             {commentsList && <PostCommentsList commentsList={commentsList} />}
             <View style={styles.postInputContainer}>
+              {/* first seconds the input is in the wrong place, fix that */}
               <InputWithSubmitOption
                 value=""
                 onChangeText={() => null}

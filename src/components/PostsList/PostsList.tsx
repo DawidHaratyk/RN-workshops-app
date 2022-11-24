@@ -17,7 +17,7 @@ export const PostsList = ({ data, postDisplayType }: PostsListProps) => {
   const renderItem = ({ item }: PostProp) => {
     if (postDisplayType === "show-entire-content")
       return <PostWithEntireContent {...item} />;
-    else return <PostImage image={item.image_url} />;
+    else return <PostImage image={item.image_url} postId={item.id} />;
   };
 
   return (
