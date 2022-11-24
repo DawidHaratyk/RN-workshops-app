@@ -7,22 +7,22 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   View,
-} from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { UserImageCircle } from "../components/UserImageCircle/UserImageCircle";
-import { Body } from "../components/Typography/Body/Body";
-import { PostInformations } from "../components/PostInformations/PostInformations";
-import { PostCommentsList } from "../components/PostCommentsList/PostCommentsList";
-import { InputWithSubmitOption } from "../components/InputWithSubmitOption/InputWithSubmitOption";
-import { windowHeight } from "../constants";
-import { usePostDetailsValues } from "../hooks/usePostDetailsValues";
+} from 'react-native'
+import React from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { UserImageCircle } from '../components/UserImageCircle/UserImageCircle'
+import { Body } from '../components/Typography/Body/Body'
+import { PostInformations } from '../components/PostInformations/PostInformations'
+import { PostCommentsList } from '../components/PostCommentsList/PostCommentsList'
+import { InputWithSubmitOption } from '../components/InputWithSubmitOption/InputWithSubmitOption'
+import { windowHeight } from '../constants'
+import { usePostDetailsValues } from '../hooks/usePostDetailsValues'
 
 export const PostDetailsScreen = ({ navigation, route }: any) => {
-  const postId: number = route.params.postId;
+  const postId: number = route.params.postId
 
   const { imgUrl, name, amountOfLikes, comment, commentsList } =
-    usePostDetailsValues(postId);
+    usePostDetailsValues(postId)
 
   // why navigation.goBack() is not going back to userProfile when that was our last route
 
@@ -35,7 +35,7 @@ export const PostDetailsScreen = ({ navigation, route }: any) => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
       <ScrollView>
@@ -76,8 +76,8 @@ export const PostDetailsScreen = ({ navigation, route }: any) => {
         </TouchableWithoutFeedback>
       </ScrollView>
     </KeyboardAvoidingView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -89,24 +89,24 @@ const styles = StyleSheet.create({
     height: windowHeight,
   },
   postDetailsImage: {
-    width: "100%",
-    height: "35%",
+    width: '100%',
+    height: '35%',
   },
   postDetailsContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10,
   },
   postDetailsImageContainer: {
     marginRight: 10,
   },
   postInputContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 15,
   },
   loadingContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     height: windowHeight,
   },
-});
+})

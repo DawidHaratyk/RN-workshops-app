@@ -1,14 +1,13 @@
-import { TextInput, View } from "react-native";
-import React from "react";
-import { styles } from "../Input/styles";
-import { AntDesign } from "@expo/vector-icons";
-import { windowWidth } from "../../constants";
+import { StyleSheet, TextInput, View } from 'react-native'
+import React, { Dispatch, SetStateAction } from 'react'
+import { AntDesign } from '@expo/vector-icons'
+import { windowWidth } from '../../constants'
 
 interface InputWithSubmitOptionProps {
-  value: string;
-  onChangeText: () => void;
-  placeholder: string;
-  onPress?: () => void;
+  value: string
+  onChangeText: Dispatch<SetStateAction<string>>
+  placeholder: string
+  onPress?: () => void
 }
 
 export const InputWithSubmitOption = ({
@@ -18,11 +17,11 @@ export const InputWithSubmitOption = ({
   onPress,
 }: InputWithSubmitOptionProps) => {
   return (
-    <View>
+    <View style={styles.textInputContainer}>
       <TextInput
         placeholder={placeholder}
         value={value}
-        onChangeText={onChangeText}
+        onChangeText={(text) => onChangeText(text)}
         style={[styles.input, { width: windowWidth * 0.88 }]}
       />
       <AntDesign
@@ -33,5 +32,26 @@ export const InputWithSubmitOption = ({
         onPress={onPress}
       />
     </View>
-  );
-};
+  )
+}
+
+const styles = StyleSheet.create({
+  textInputContainer: {
+    alignItems: 'center',
+  },
+  input: {
+    width: windowWidth * 0.8,
+    borderRadius: 3,
+    borderColor: 'black',
+    borderWidth: 2,
+    fontSize: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    minHeight: 40,
+  },
+  submitIcon: {
+    position: 'absolute',
+    top: '25%',
+    right: 10,
+  },
+})

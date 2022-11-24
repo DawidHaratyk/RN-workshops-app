@@ -1,18 +1,18 @@
-import { StyleSheet, View } from "react-native";
-import React from "react";
-import { Header } from "../Typography/Header/Header";
-import { useAuth } from "../../contexts/AuthContext";
-import { MainButton } from "../Typography/MainButton/MainButton";
-import { useNavigation } from "@react-navigation/native";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginValidation } from "../../auth/validations";
-import { handleLogin } from "../../auth/helpers/handleLogin";
-import FormInput from "../FormInput/FormInput";
+import { StyleSheet, View } from 'react-native'
+import React from 'react'
+import { Header } from '../Typography/Header/Header'
+import { useAuth } from '../../contexts/AuthContext'
+import { MainButton } from '../Typography/MainButton/MainButton'
+import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { loginValidation } from '../../auth/validations'
+import { handleLogin } from '../../auth/helpers/handleLogin'
+import FormInput from '../FormInput/FormInput'
 
 export const LoginView = () => {
-  const { login } = useAuth();
-  const navigation = useNavigation();
+  const { login, setLoggedUserUuid } = useAuth()
+  const navigation = useNavigation()
 
   const {
     control,
@@ -21,12 +21,12 @@ export const LoginView = () => {
   } = useForm({
     resolver: yupResolver(loginValidation),
     defaultValues: {
-      email: "Janek@onet.pl",
-      password: "Password",
+      email: 'Janek@onet.pl',
+      password: 'Password',
     },
-  });
+  })
 
-  const goToRegisterScreen = () => navigation.navigate("Register");
+  const goToRegisterScreen = () => navigation.navigate('Register')
 
   return (
     <View style={styles.loginContainer}>
@@ -35,10 +35,10 @@ export const LoginView = () => {
       </View>
       <View>
         <View style={styles.loginInputs}>
-          <FormInput control={control} errors={errors["email"]} name="email" />
+          <FormInput control={control} errors={errors['email']} name="email" />
           <FormInput
             control={control}
-            errors={errors["password"]}
+            errors={errors['password']}
             name="password"
           />
         </View>
@@ -47,7 +47,9 @@ export const LoginView = () => {
             title="Login"
             backgroundColor="green"
             onPress={handleSubmit((values) =>
-              handleLogin({ ...values, login })
+              handleLogin({ ...values, login, setLoggedUserUuid }).then(() =>
+                console.log(':)')
+              )
             )}
           />
           <MainButton
@@ -58,14 +60,14 @@ export const LoginView = () => {
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   loginContainer: {
     marginTop: 100,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loginHeader: {
     marginBottom: 80,
@@ -73,4 +75,4 @@ const styles = StyleSheet.create({
   loginInputs: {
     marginBottom: 15,
   },
-});
+})
