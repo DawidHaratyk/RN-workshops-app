@@ -22,7 +22,6 @@ export const MainButton = ({
         styles.mainButton,
         {
           backgroundColor: theme.backgroundColors[backgroundColor],
-          borderRadius: 3,
         },
       ]}
       onPress={onPress}

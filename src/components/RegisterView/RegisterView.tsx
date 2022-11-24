@@ -1,21 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { Header } from '../Typography/Header/Header'
-import { MainButton } from '../Typography/MainButton/MainButton'
-import { Input } from '../Input/Input'
-import { Controller, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { theme } from '../../theme/theme'
-import { supabase } from '../../../supabase'
-import { registerValidation } from '../../auth/validations'
-import { signUpUser } from '../../auth/helpers/signUpUser'
-import FormInput from '../FormInput/FormInput'
-import { RegisterInputValues } from '../../types'
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { Header } from "../Typography/Header/Header";
+import { MainButton } from "../Typography/MainButton/MainButton";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { theme } from "../../theme/theme";
+import { registerValidation } from "../../auth/validations";
+import { signUpUser } from "../../auth/helpers/signUpUser";
+import FormInput from "../FormInput/FormInput";
+import { RegisterInputValues } from "../../types";
 
 export const RegisterView = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const {
     control,
@@ -24,18 +21,17 @@ export const RegisterView = () => {
   } = useForm({
     resolver: yupResolver(registerValidation),
     defaultValues: {
-      email: '',
-      password: '',
-      confirmedPassword: '',
+      email: "",
+      password: "",
+      confirmedPassword: "",
     },
-  })
+  });
 
   const handleCreateUser = (values: RegisterInputValues) => {
-    const newUser = signUpUser(values)
-    console.log(newUser)
+    signUpUser(values);
 
-    navigation.navigate('Login')
-  }
+    navigation.navigate("Login");
+  };
 
   return (
     <View style={styles.registerContainer}>
@@ -44,15 +40,15 @@ export const RegisterView = () => {
       </View>
       <View>
         <View style={styles.registerInputs}>
-          <FormInput control={control} errors={errors['email']} name="email" />
+          <FormInput control={control} errors={errors["email"]} name="email" />
           <FormInput
             control={control}
-            errors={errors['password']}
+            errors={errors["password"]}
             name="password"
           />
           <FormInput
             control={control}
-            errors={errors['confirmedPassword']}
+            errors={errors["confirmedPassword"]}
             name="confirmedPassword"
           />
         </View>
@@ -65,14 +61,14 @@ export const RegisterView = () => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   registerContainer: {
     marginTop: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   registerHeader: {
     marginBottom: 80,
@@ -86,4 +82,4 @@ const styles = StyleSheet.create({
   inputAndAlertContainer: {
     marginBottom: 14,
   },
-})
+});

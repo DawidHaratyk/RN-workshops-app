@@ -7,7 +7,6 @@ interface UserImageCircleProps {
   size: "small" | "medium" | "large";
   onPress?: () => void;
   additionalStyles?: ViewStyle;
-  // is ViewStyle type good type here?
 }
 
 export const UserImageCircle = ({
@@ -16,19 +15,16 @@ export const UserImageCircle = ({
   onPress,
   additionalStyles,
 }: UserImageCircleProps) => {
+  const choosedImage = image
+    ? image
+    : "https://i.pinimg.com/280x280_RS/9e/36/c8/9e36c8ae6b12cd6cec3b1de2591da9e4.jpg";
+
   return (
     <Pressable
       style={[styles.userImageCircle, styles[size], additionalStyles]}
       onPress={onPress}
     >
-      <Image
-        source={{
-          uri: image
-            ? image
-            : "https://i.pinimg.com/280x280_RS/9e/36/c8/9e36c8ae6b12cd6cec3b1de2591da9e4.jpg",
-        }}
-        style={styles.image}
-      />
+      <Image source={{ uri: choosedImage }} style={styles.image} />
     </Pressable>
   );
 };

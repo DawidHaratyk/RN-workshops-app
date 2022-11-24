@@ -19,3 +19,7 @@ export interface RegisterInputValues {
   password: string;
   confirmedPassword: string;
 }
+
+export interface StoryItem {
+  image: ImageSourcePropType;
+}

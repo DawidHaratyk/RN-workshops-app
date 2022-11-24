@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import React from "react";
 import { PostProps } from "../../types";
 import { PostWithEntireContent } from "../PostWithEntireContent/PostWithEntireContent";
@@ -17,36 +17,35 @@ export const PostsList = ({ data, postDisplayType }: PostsListProps) => {
   const renderItem = ({ item }: PostProp) => {
     if (postDisplayType === "show-entire-content")
       return <PostWithEntireContent {...item} />;
-    // if (postDisplayType === 'show-image-only')
-    // return (
-    // <View style={styles.postsImagesContainer}>
-    //   {data.map((postObj) => (
-    //     <PostImage image={postObj.image_url} />
-    //   ))}
-    // </View>
-    // )
+    else return <PostImage image={item.image_url} />;
   };
 
   return (
-    <View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.postsListContainer}
-        data={data}
-        // keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-      />
-    </View>
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={
+        styles[
+          postDisplayType === "show-entire-content"
+            ? "postsWithContentContainer"
+            : "postsWithImageOnlyContainer"
+        ]
+      }
+      data={data}
+      // keyExtractor={(item) => item.id}
+      renderItem={renderItem}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  postsListContainer: {
+  postsWithContentContainer: {
     paddingHorizontal: 8,
   },
-  postsImagesContainer: {
-    flexWrap: "wrap",
-    justifyContent: "center",
+  postsWithImageOnlyContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
+    flexWrap: "wrap",
+    paddingHorizontal: 8,
   },
 });

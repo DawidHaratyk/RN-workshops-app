@@ -1,15 +1,14 @@
-import { Button, StyleSheet, View } from 'react-native'
-import React from 'react'
-import { Header } from '../Typography/Header/Header'
-import { useNavigation } from '@react-navigation/native'
-import { windowHeight } from '../../constants'
-import { MainButton } from '../Typography/MainButton/MainButton'
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import { Header } from "../Typography/Header/Header";
+import { useNavigation } from "@react-navigation/native";
+import { windowHeight } from "../../constants";
+import { MainButton } from "../Typography/MainButton/MainButton";
 
 export const Welcome = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  const goToLoginPage = () => navigation.navigate('Login')
-  // how to type react-navigation in typescript
+  const goToLoginPage = () => navigation.navigate("Login");
 
   return (
     <View style={styles.welcomeContainer}>
@@ -23,17 +22,17 @@ export const Welcome = () => {
         />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   welcomeContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     height: windowHeight,
   },
   welcomeContent: {
-    justifyContent: 'space-between',
-    height: '20%',
+    justifyContent: "space-between",
+    height: "20%",
   },
-})
+});

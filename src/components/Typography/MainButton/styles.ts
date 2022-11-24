@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     width: windowWidth * 0.8,
     marginBottom: 14,
+    borderRadius: 3,
   },
   green: {
     backgroundColor: theme.backgroundColors.green,

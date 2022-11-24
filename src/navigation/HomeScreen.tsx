@@ -1,12 +1,9 @@
-import { StyleSheet } from 'react-native'
-import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { DashboardScreen } from '../screens/DashboardScreen'
-import { PostDetailsScreen } from '../screens/PostDetailsScreen'
-import { UserProfileScreen } from '../screens/UserProfileScreen'
-
-const Stack = createNativeStackNavigator()
-// check whether I can export Stack from another component
+import { StyleSheet } from "react-native";
+import React from "react";
+import { DashboardScreen } from "../screens/DashboardScreen";
+import { PostDetailsScreen } from "../screens/PostDetailsScreen";
+import { UserProfileScreen } from "../screens/UserProfileScreen";
+import { Stack } from "./Root";
 
 export const HomeScreen = () => {
   return (
@@ -18,7 +15,5 @@ export const HomeScreen = () => {
       <Stack.Screen name="PostDetails" component={PostDetailsScreen} />
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />
     </Stack.Navigator>
-  )
-}
-
-const styles = StyleSheet.create({})
+  );
+};

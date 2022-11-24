@@ -6,44 +6,15 @@ import { PostsDisplayedTypeToggler } from "../components/PostsDisplayedTypeToggl
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PostsList } from "../components/PostsList/PostsList";
 import { PostProps } from "../types";
-
-// const postsData: PostProps[] = [
-//   {
-//     name: "name 1",
-//     image: require("../images/graphic1.jpg"),
-//     amountOfLikes: 8,
-//     commentAuthor: "Somebody 1",
-//     comment: "XDZXDXDXDXDXD",
-//     id: 1,
-//   },
-//   {
-//     name: "name 2",
-//     image: require("../images/graphic1.jpg"),
-//     amountOfLikes: 14,
-//     commentAuthor: "Somebody 2",
-//     comment: "XDZXDXDXDXDXDXDXDXDXDXDXD",
-//     id: 2,
-//   },
-//   {
-//     name: "name 3",
-//     image: require("../images/graphic1.jpg"),
-//     amountOfLikes: 10,
-//     commentAuthor: "Somebody 3",
-//     comment: "XDZXDXDXDXDXD",
-//     id: 3,
-//   },
-//   {
-//     name: "name 4",
-//     image: require("../images/graphic1.jpg"),
-//     amountOfLikes: 14,
-//     commentAuthor: "Somebody 4",
-//     comment: "XDZXDXDXDXDXD",
-//     id: 4,
-//   },
-// ];
+import { useQuery } from "@tanstack/react-query";
+import { getPosts } from "../api/supabase/getPosts";
 
 export const UserProfileScreen = ({ route }: any) => {
-  console.log(route.params.userId);
+  const { data, isLoading } = useQuery(["posts"], getPosts);
+
+  const posts = data ?? [];
+
+  // console.log(route.params.userId);
 
   const [isEntirePostShown, setIsEntirePostShown] = useState(false);
 
@@ -65,12 +36,12 @@ export const UserProfileScreen = ({ route }: any) => {
           setIsEntirePostShown={setIsEntirePostShown}
         />
       </View>
-      {/* <PostsList
-        data={postsData}
+      <PostsList
+        data={posts}
         postDisplayType={
           isEntirePostShown ? "show-entire-content" : "show-image-only"
         }
-      /> */}
+      />
     </SafeAreaView>
   );
 };
