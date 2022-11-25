@@ -16,8 +16,14 @@ export const getPostDetails = async (postId: number) => {
     .eq("uuid", postDetailsResponse.data?.creator_uuid)
     .single();
 
+  const likesResponse = await supabase
+    .from("likes")
+    .select("*", { count: "exact" })
+    .eq("post_id", postId);
+
   return {
     postDetailsResponse: postDetailsResponse,
     userResponse: userResponse.data,
+    likesResponse: likesResponse.data?.length,
   };
 };

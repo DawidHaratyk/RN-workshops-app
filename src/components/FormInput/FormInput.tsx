@@ -5,6 +5,8 @@ import { Input } from "../Input/Input";
 import { theme } from "../../theme/theme";
 
 const FormInput = ({ control, errors, name }: any) => {
+  console.log(errors);
+
   return (
     <View style={styles.inputAndAlertContainer}>
       <Controller

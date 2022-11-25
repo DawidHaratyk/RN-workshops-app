@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { DashboardScreen } from "../screens/DashboardScreen";
 import { PostDetailsScreen } from "../screens/PostDetailsScreen";
 import { UserProfileScreen } from "../screens/UserProfileScreen";
-import { Stack } from "./Root";
+
+const Stack = createNativeStackNavigator();
 
 export const HomeScreen = () => {
   return (

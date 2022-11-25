@@ -55,7 +55,11 @@ export const PostWithEntireContent = ({
       </View>
       <PostInformations
         amountOfLikes={data?.likes ?? 0}
-        commentAuthor={data?.lastCommentAuthor ? data?.lastCommentAuthor : ""}
+        commentAuthor={
+          data?.lastCommentAuthor === "null null"
+            ? "Imie nazwisko"
+            : data?.lastCommentAuthor
+        }
         comment={data?.comments ? data?.comments[0]?.body : null}
       />
     </Pressable>

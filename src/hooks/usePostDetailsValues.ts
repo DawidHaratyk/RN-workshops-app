@@ -14,9 +14,9 @@ export const usePostDetailsValues = (postId: number) => {
     ? data?.userResponse?.first_name
     : "Noname";
 
-  const amountOfLikes = data?.postDetailsResponse.count
-    ? data?.postDetailsResponse.count
-    : 0;
+  console.log(data?.postDetailsResponse);
+
+  const amountOfLikes = data?.likesResponse ? data?.likesResponse : 0;
 
   const comment = data?.postDetailsResponse?.data?.description;
 

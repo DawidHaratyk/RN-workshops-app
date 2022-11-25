@@ -24,6 +24,10 @@ export const Input = ({
       onChangeText={onChangeText}
       onBlur={onBlur}
       style={[styles.input, additionalStyles]}
+      secureTextEntry={
+        (placeholder === "password" || placeholder === "confirmedPassword") &&
+        true
+      }
     />
   );
 };

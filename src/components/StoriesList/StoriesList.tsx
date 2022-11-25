@@ -10,6 +10,8 @@ export const StoriesList = () => {
 
   const { data } = useQuery(["users"], getUsers);
 
+  console.log(data);
+
   const goToUserProfile = () => navigate("UserProfile");
 
   const storiesList = data?.map(({ image_url, uuid }) => (

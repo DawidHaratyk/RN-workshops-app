@@ -13,6 +13,8 @@ export const PostInformations = ({
   commentAuthor,
   comment,
 }: PostInformationsProps) => {
+  console.log(commentAuthor);
+
   return (
     <View style={styles.postInformations}>
       <Body title={`${amountOfLikes} likes`} variant="large" />
